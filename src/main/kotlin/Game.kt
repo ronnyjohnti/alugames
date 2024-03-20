@@ -4,7 +4,7 @@ class Game(
   val title: String,
   val thumb: String
 ) {
-  val description = ""
+  var description:String? = null
 
   override fun toString(): String {
     return "Jogo: $title \n" +
