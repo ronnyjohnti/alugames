@@ -34,7 +34,8 @@ data class Player(var name: String, var email: String) {
     }
 
     private fun generateId(): String {
-        return "$user#" + Random.nextInt(10000)
+        val tag = String.format("%04d", Random.nextInt(10000))
+        return "$user#$tag"
     }
 
     private fun validateEmail(): String {
