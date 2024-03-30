@@ -26,9 +26,9 @@ fun main() {
         }
 
         gameResult.onSuccess {
-            println("Você quer adicionar uma descrição personlizada? [S/n]")
+            println("Você quer adicionar uma descrição personlizada? [s/N]")
             val addDesc = reader.nextLine()
-            if(addDesc.equals("s", true) || addDesc.equals("")) {
+            if(addDesc.equals("s", true)) {
                 println("Insira a descrição:")
                myGame?.description = reader.nextLine()
             } else {
@@ -36,8 +36,6 @@ fun main() {
             }
 
             player.foundGames.add(myGame)
-//            println("==========================================================")
-//            println(myGame)
         }
 
         println("\n=========================================================")
@@ -45,7 +43,33 @@ fun main() {
         val findOther = reader.nextLine()
     } while(findOther.equals("s", true) || findOther.equals(""))
 
-    println(player.foundGames)
+    println("Jogos ordenados por título: ")
+    player.foundGames.sortBy {
+        it?.title
+    }
+    player.foundGames.forEach {
+        println("Title: " + it?.title)
+    }
+
+    // Filtered games when title contains "batman"
+    val filteredGames = player.foundGames.filter {
+        it?.title?.contains("batman", true) ?: false
+    }
+    println("\nJogos do Batman: ")
+    println(filteredGames)
+
+    println("\nDeseja excluir algum jogo da primeira lista? [s/N]")
+    val delete = reader.nextLine()
+    if(delete.equals("s", true)) {
+        println("Informe a posição: ")
+        val index = reader.nextInt()
+        player.foundGames.removeAt(index)
+    }
+
+    println("\nLista atualizada: ")
+    player.foundGames.forEach {
+        println("Title: " + it?.title)
+    }
 
     println("Busca finalizada!")
 }
