@@ -1,4 +1,5 @@
 package dev.ronnyjohnti.alugames.main
+import calculateAge
 import dev.ronnyjohnti.alugames.model.Game
 import dev.ronnyjohnti.alugames.model.Player
 import dev.ronnyjohnti.alugames.services.ApiClient
@@ -8,7 +9,10 @@ fun main() {
     val reader = Scanner(System.`in`)
     var myGame: Game? = null
     val player = Player.createPlayer(reader)
+    println("Cadastro concluído!")
     println(player)
+    println("Idade do Player: " + player.birthDate?.calculateAge() + "\n")
+
 
     do {
         println("Digite o id do jogo: ")
