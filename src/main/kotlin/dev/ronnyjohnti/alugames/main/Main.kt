@@ -1,5 +1,6 @@
 package dev.ronnyjohnti.alugames.main
 import calculateAge
+import com.google.gson.Gson
 import dev.ronnyjohnti.alugames.model.Game
 import dev.ronnyjohnti.alugames.model.Player
 import dev.ronnyjohnti.alugames.services.ApiClient
@@ -19,10 +20,8 @@ fun main() {
         val id = reader.nextLine()
 
         val gameResult = runCatching {
-            val myGameInfo = ApiClient().findGameInfo(id)
-            myGame = Game(
-                myGameInfo.info.title,
-                myGameInfo.info.thumb)
+            val myGameInfo = ApiClient(Gson()).findGameInfo(id)
+            myGame = myGameInfo.info
         }
 
         gameResult.onFailure {

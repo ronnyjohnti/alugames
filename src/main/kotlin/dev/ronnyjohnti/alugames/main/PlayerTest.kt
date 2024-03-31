@@ -9,7 +9,7 @@ fun main() {
     val player2 = Player(
         "Mr. Nobody",
         "nobody@email.co",
-        LocalDate.parse("2003-04-21"),
+        "2003-04-21",
         "newsplay"
     )
     println(player2)

@@ -1,6 +1,5 @@
 package dev.ronnyjohnti.alugames.model
 
-import java.sql.Date
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.Scanner
@@ -27,9 +26,9 @@ data class Player(var name: String, var email: String) {
         user = validateUser()
     }
 
-    constructor(name: String, email: String, birthDate: LocalDate, user: String):
+    constructor(name: String, email: String, birthDate: String, user: String):
         this(name, email) {
-            this.birthDate = birthDate
+            this.birthDate = LocalDate.parse(birthDate, DateTimeFormatter.ofPattern("dd-MM-yyyy"))
             this.user = user
             this.id = this.generateId()
         }
@@ -73,7 +72,7 @@ data class Player(var name: String, var email: String) {
             println("Digite o nome de usuário:")
             val user = reader.nextLine()
             println("Digite a data de nascimento: (dd-mm-yyyy)")
-            val birthDate = LocalDate.parse(reader.nextLine(), DateTimeFormatter.ofPattern("dd-MM-yyyy"))
+            val birthDate = reader.nextLine()
 
             return Player(name, email, birthDate, user)
         }
